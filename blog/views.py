@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 def index(request):
     # from django.http import HttpResponse # cache concpet
     # return HttpResponse(str(request.user).encode("ascii"))# cache concpet
-    posts = Post.objects.filter(published_at__lte=timezone.now())
+    posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
     logger.debug("Got %d posts", len(posts)) #this line is more efficient than one below.
     # logger.debug("Got %d posts" % (len(posts)))
     return render(request, "blog/index.html", {"posts": posts})
@@ -44,3 +44,8 @@ def post_detail(request, slug):
     return render(
         request, "blog/post-detail.html", {"post": post, "comment_form": comment_form}
     )
+
+
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])

@@ -37,6 +37,9 @@ class Dev(Configuration):
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SAMESITE = 'None'
+    #DjDT
+    # need to check that  the IP address in your INTERNAL_IPS setting (currently “192.168.10.92”) actually matches what your get_ip view returns when you visit the /ip/ URL
+    INTERNAL_IPS = ["192.168.10.31"] 
 
     # Application definition
 
@@ -48,13 +51,16 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         "blog",
+        "debug_toolbar",#DjDT
         "crispy_forms",
         "crispy_bootstrap5",
+
     ]
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",#DjDT
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -62,6 +68,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     ]
 
     ROOT_URLCONF = 'blango.urls'
