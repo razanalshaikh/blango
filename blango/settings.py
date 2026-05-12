@@ -29,6 +29,7 @@ class Dev(Configuration):
     # other settings truncated for brevity
     ALLOWED_HOSTS = ["*"]
     
+    AUTH_USER_MODEL = "blango_auth.User" 
 
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
     CSRF_COOKIE_SAMESITE = None
@@ -40,7 +41,7 @@ class Dev(Configuration):
     #DjDT
     # need to check that  the IP address in your INTERNAL_IPS setting (currently “192.168.10.92”) actually matches what your get_ip view returns when you visit the /ip/ URL
     INTERNAL_IPS = ["192.168.10.31"] 
-
+   
     # Application definition
 
     INSTALLED_APPS = [
@@ -50,6 +51,7 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        "blango_auth",
         "blog",
         "debug_toolbar",#DjDT
         "crispy_forms",
