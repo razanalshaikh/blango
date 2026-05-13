@@ -17,7 +17,7 @@ from configurations import Configuration, values
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
-
+    # REGISTRATION_OPEN = False ## this a way to close registration of new account
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -29,6 +29,11 @@ class Dev(Configuration):
     # other settings truncated for brevity
     ALLOWED_HOSTS = ["*"]
     
+    # email activation after signup
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ACCOUNT_ACTIVATION_DAYS = 7
+
+  
     AUTH_USER_MODEL = "blango_auth.User" 
 
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -44,16 +49,16 @@ class Dev(Configuration):
    
     # Application definition
 
-    INSTALLED_APPS = [
+    INSTALLED_APPS = [  
+        "blango_auth",
+        "blog",
+        "debug_toolbar",#DjDT
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        "blango_auth",
-        "blog",
-        "debug_toolbar",#DjDT
         "crispy_forms",
         "crispy_bootstrap5",
 

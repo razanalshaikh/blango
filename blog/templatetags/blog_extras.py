@@ -41,10 +41,11 @@ def endrow():
     return format_html("</div>")
 
 
-
+# adding class_name if needed 
 @register.simple_tag
-def col():
-    return format_html('<div class="clo">')
+def col(class_name=""):
+    return format_html('<div class="{}">', class_name)
+
 
 @register.simple_tag
 def endcol():
@@ -55,3 +56,5 @@ def recent_posts(post):
     posts = Post.objects.exclude(pk=post.pk)[:5] 
     logger.debug("Loaded %d recent posts for post %d", len(posts), post.pk)
     return {"title": "Recent Posts", "posts": posts}
+
+

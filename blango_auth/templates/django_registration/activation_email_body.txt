@@ -1,0 +1,14 @@
+Hi {{ request.user.first_name }},
+
+Welcome to Blango! We're excited to have you join our community.
+
+To complete your registration and activate your account, please click the link below within {{ expiration_days }} days:
+
+{{ scheme }}://{{ request.get_host }}{% url "django_registration_activate" activation_key %}
+
+Once activated, you'll be able to log in and start using Blango.
+
+If you did not create this account, you can safely ignore this email.
+
+Thanks,
+The Blango Team

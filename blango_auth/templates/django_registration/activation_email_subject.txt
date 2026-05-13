@@ -1,0 +1,1 @@
+Welcome to Blango - Activate Your Account! You have {{ expiration_days }} days!
