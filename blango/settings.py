@@ -59,12 +59,26 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django.contrib.sites',
         "crispy_forms",
         "crispy_bootstrap5",
-
+        "allauth",
+        "allauth.account",
+        "allauth.socialaccount",
+        "allauth.socialaccount.providers.google",
     ]
+
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+    
+    # SITE_ID = 1 # for www.example.com
+    SITE_ID = 2
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    LOGIN_REDIRECT_URL = '/'
 
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",#DjDT
