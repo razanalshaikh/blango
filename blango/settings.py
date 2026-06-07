@@ -46,7 +46,15 @@ class Dev(Configuration):
     #DjDT
     # need to check that  the IP address in your INTERNAL_IPS setting (currently “192.168.10.92”) actually matches what your get_ip view returns when you visit the /ip/ URL
     INTERNAL_IPS = ["192.168.10.31"] 
-   
+    # token auth
+    REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+    }
+
     # Application definition
 
     INSTALLED_APPS = [  
@@ -67,6 +75,7 @@ class Dev(Configuration):
         "allauth.socialaccount",
         "allauth.socialaccount.providers.google",
         "rest_framework",
+        "rest_framework.authtoken",
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
