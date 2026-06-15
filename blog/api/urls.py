@@ -41,4 +41,10 @@ urlpatterns += [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
+    path(
+        "posts/by-time/<str:period_name>/",
+        PostViewSet.as_view({"get": "list"}),
+        name="posts-by-time",
+    ),
+    
 ]
