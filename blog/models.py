@@ -28,6 +28,8 @@ class Comment(models.Model):
     
 class Tag(models.Model):
   value = models.TextField(unique=True, max_length = 100)
+  class Meta:
+        ordering = ["value"]
 
   def __str__(self):
     return self.value
