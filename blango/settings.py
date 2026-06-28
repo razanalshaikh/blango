@@ -32,8 +32,9 @@ class Dev(Configuration):
     # email activation after signup
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     ACCOUNT_ACTIVATION_DAYS = 7
-
-  
+    # where uploaded files are saved:
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
     AUTH_USER_MODEL = "blango_auth.User" 
 
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -115,6 +116,8 @@ class Dev(Configuration):
         "rest_framework.authtoken",
         "drf_yasg",
         "django_filters",
+        "versatileimagefield",
+        
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
