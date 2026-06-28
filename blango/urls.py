@@ -39,6 +39,8 @@ urlpatterns = [
     RegistrationView.as_view(form_class=BlangoRegistrationForm),
     name="django_registration_register",),
     path("accounts/", include("django_registration.backends.activation.urls")),
+    path("post-table/", blog.views.post_table, name="blog-post-table"),
+
   ]
 if settings.DEBUG:
     urlpatterns += [
